@@ -65,6 +65,7 @@
                 <div class="hidden md:flex space-x-8 items-center">
                     <a href="#about" class="text-secondary/80 hover:text-primary font-medium transition-colors">About</a>
                     <a href="#services" class="text-secondary/80 hover:text-primary font-medium transition-colors">Services</a>
+                    <a href="#testimonials" class="text-secondary/80 hover:text-primary font-medium transition-colors">Testimonials</a>
                     <a href="#contact" class="bg-dark text-light px-6 py-2.5 rounded-lg font-medium hover:bg-primary hover:text-dark transition-all shadow-sm">Let's Connect</a>
                 </div>
 
@@ -82,6 +83,7 @@
             <div class="px-4 pt-2 pb-6 space-y-2 text-center">
                 <a href="#about" class="block px-3 py-3 text-base font-medium text-secondary hover:text-primary hover:bg-surface/50 rounded-md transition-colors">About</a>
                 <a href="#services" class="block px-3 py-3 text-base font-medium text-secondary hover:text-primary hover:bg-surface/50 rounded-md transition-colors">Services</a>
+                <a href="#testimonials" class="block px-3 py-3 text-base font-medium text-secondary hover:text-primary hover:bg-surface/50 rounded-md transition-colors">Testimonials</a>
                 <a href="#contact" class="block px-3 py-3 mt-4 text-base font-medium text-light bg-dark hover:bg-primary hover:text-dark rounded-md transition-colors">Let's Connect</a>
             </div>
         </div>
@@ -259,6 +261,41 @@
                     <h3 class="text-xl font-bold text-dark mb-4">AI-Optimized Workflows</h3>
                     <p class="text-secondary/80 leading-relaxed text-sm">Actively integrating tools like Gemini and Claude to speed up research, streamline content creation, and deliver premium results in a fraction of the traditional time.</p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials / Comments Section -->
+    <section id="testimonials" class="py-24 bg-light relative border-t border-surface">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-sm font-bold tracking-widest text-primary uppercase mb-3">Client Feedback</h2>
+                <h3 class="text-3xl font-extrabold text-dark sm:text-4xl">Leave a Testimonial</h3>
+                <p class="mt-4 text-lg text-secondary/80">Have we worked together? Sign in with your Google account below to share your experience.</p>
+            </div>
+
+            <!-- Disqus Comments Container -->
+            <div class="bg-surface/20 p-4 sm:p-8 rounded-2xl shadow-inner border border-surface">
+                <div id="disqus_thread">
+                    <p class="text-center text-secondary/60 py-10 font-medium">Loading comment section...</p>
+                </div>
+                <script>
+                    /* IMPORTANT: To make this work live, replace 'your-shortname' below 
+                    with the shortname you get when you register for free at disqus.com 
+                    */
+                    var disqus_config = function () {
+                        // this.page.url = 'https://yourusername.github.io/jv-portfolio'; // Update this once your GitHub site is live
+                        this.page.identifier = 'jv-portfolio-home'; 
+                    };
+                    
+                    (function() { // DON'T EDIT BELOW THIS LINE
+                        var d = document, s = d.createElement('script');
+                        s.src = 'https://jv-portfolio.disqus.com/embed.js';
+                        s.setAttribute('data-timestamp', +new Date());
+                        (d.head || d.body).appendChild(s);
+                    })();
+                </script>
+                <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
             </div>
         </div>
     </section>
