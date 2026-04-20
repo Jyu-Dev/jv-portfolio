@@ -57,7 +57,7 @@
                             <path d="M18 12V24C18 26.2091 16.2091 28 14 28C11.7909 28 10 26.2091 10 24" stroke="#fca311" stroke-width="3.5" stroke-linecap="round"/>
                             <path d="M22 12L26 28L30 12" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
-                        <span class="text-primary">JV</span>-Portfolio<span class="text-primary">.</span>
+                        Portfolio<span class="text-primary">.</span>
                     </a>
                 </div>
                 
@@ -280,9 +280,6 @@
                     <p class="text-center text-secondary/60 py-10 font-medium">Loading comment section...</p>
                 </div>
                 <script>
-                    /* IMPORTANT: To make this work live, replace 'your-shortname' below 
-                    with the shortname you get when you register for free at disqus.com 
-                    */
                     var disqus_config = function () {
                         // this.page.url = 'https://yourusername.github.io/jv-portfolio'; // Update this once your GitHub site is live
                         this.page.identifier = 'jv-portfolio-home'; 
@@ -388,7 +385,7 @@
                         <path d="M22 12L26 28L30 12" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                     <span class="text-xl font-bold tracking-tight text-light">
-                        <span class="text-primary">JV</span>-Portfolio<span class="text-primary">.</span>
+                        Portfolio<span class="text-primary">.</span>
                     </span>
                 </div>
                 <p class="text-light/50 text-sm">© <span id="year"></span> All rights reserved.</p>
@@ -413,99 +410,125 @@
 
     <!-- Interactive Scripts -->
     <script>
-        // Set current year in footer
-        document.getElementById('year').textContent = new Date().getFullYear();
-
-        // Mobile Menu Toggle
-        const btn = document.getElementById('mobile-menu-btn');
-        const menu = document.getElementById('mobile-menu');
-        const icon = btn.querySelector('i');
-
-        btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
-            if(menu.classList.contains('hidden')){
-                icon.classList.remove('ph-x');
-                icon.classList.add('ph-list');
-            } else {
-                icon.classList.remove('ph-list');
-                icon.classList.add('ph-x');
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set current year in footer
+            const yearEl = document.getElementById('year');
+            if (yearEl) {
+                yearEl.textContent = new Date().getFullYear();
             }
-        });
 
-        // Close mobile menu when a link is clicked
-        const mobileLinks = menu.querySelectorAll('a');
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                menu.classList.add('hidden');
-                icon.classList.remove('ph-x');
-                icon.classList.add('ph-list');
-            });
-        });
-
-        // Navbar blur effect on scroll
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('navbar');
-            if (window.scrollY > 10) {
-                nav.classList.add('shadow-sm');
-                nav.style.borderBottom = '1px solid rgba(229, 229, 229, 1)';
-            } else {
-                nav.classList.remove('shadow-sm');
-                nav.style.borderBottom = '1px solid rgba(229, 229, 229, 0.5)';
-            }
-        });
-
-        // Form submission via FormSubmit
-        const form = document.getElementById('contact-form');
-        const successMsg = document.getElementById('form-success');
-        
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
+            // Mobile Menu Toggle
+            const btn = document.getElementById('mobile-menu-btn');
+            const menu = document.getElementById('mobile-menu');
             
-            // Show sending UI
-            const btn = form.querySelector('button[type="submit"]');
-            const originalBtnText = btn.innerHTML;
-            
-            btn.innerHTML = '<i class="ph ph-spinner animate-spin text-lg"></i> Sending...';
-            btn.disabled = true;
-            btn.classList.add('opacity-80');
-
-            // Send data to FormSubmit API
-            fetch("https://formsubmit.co/ajax/junlyvina@gmail.com", {
-                method: "POST",
-                headers: { 
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body: JSON.stringify({
-                    name: document.getElementById('name').value,
-                    email: document.getElementById('email').value,
-                    message: document.getElementById('message').value,
-                    _subject: "New Lead from JV-Portfolio!" // Subject line of the email you receive
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                // Show success UI
-                successMsg.classList.remove('hidden');
-                form.reset();
-                btn.innerHTML = originalBtnText;
-                btn.disabled = false;
-                btn.classList.remove('opacity-80');
+            if (btn && menu) {
+                const icon = btn.querySelector('i');
                 
-                // Hide message after 5 seconds
-                setTimeout(() => {
-                    successMsg.classList.add('hidden');
-                }, 5000);
-            })
-            .catch(error => {
-                console.log(error);
-                btn.innerHTML = 'Error. Please try again.';
-                setTimeout(() => {
-                    btn.innerHTML = originalBtnText;
-                    btn.disabled = false;
-                    btn.classList.remove('opacity-80');
-                }, 3000);
-            });
+                btn.addEventListener('click', () => {
+                    menu.classList.toggle('hidden');
+                    if(icon) {
+                        if(menu.classList.contains('hidden')){
+                            icon.classList.remove('ph-x');
+                            icon.classList.add('ph-list');
+                        } else {
+                            icon.classList.remove('ph-list');
+                            icon.classList.add('ph-x');
+                        }
+                    }
+                });
+
+                // Close mobile menu when a link is clicked
+                const mobileLinks = menu.querySelectorAll('a');
+                mobileLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        menu.classList.add('hidden');
+                        if(icon) {
+                            icon.classList.remove('ph-x');
+                            icon.classList.add('ph-list');
+                        }
+                    });
+                });
+            }
+
+            // Navbar blur effect on scroll
+            const nav = document.getElementById('navbar');
+            if (nav) {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 10) {
+                        nav.classList.add('shadow-sm');
+                        nav.style.borderBottom = '1px solid rgba(229, 229, 229, 1)';
+                    } else {
+                        nav.classList.remove('shadow-sm');
+                        nav.style.borderBottom = '1px solid rgba(229, 229, 229, 0.5)';
+                    }
+                });
+            }
+
+            // Form submission via FormSubmit
+            const form = document.getElementById('contact-form');
+            const successMsg = document.getElementById('form-success');
+            
+            if (form && successMsg) {
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    
+                    // Show sending UI
+                    const submitBtn = form.querySelector('button[type="submit"]');
+                    const originalBtnText = submitBtn ? submitBtn.innerHTML : 'Send Message';
+                    
+                    if(submitBtn) {
+                        submitBtn.innerHTML = '<i class="ph ph-spinner animate-spin text-lg"></i> Sending...';
+                        submitBtn.disabled = true;
+                        submitBtn.classList.add('opacity-80');
+                    }
+
+                    const nameInput = document.getElementById('name');
+                    const emailInput = document.getElementById('email');
+                    const messageInput = document.getElementById('message');
+
+                    // Send data to FormSubmit API
+                    fetch("https://formsubmit.co/ajax/junlyvina@gmail.com", {
+                        method: "POST",
+                        headers: { 
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            name: nameInput ? nameInput.value : '',
+                            email: emailInput ? emailInput.value : '',
+                            message: messageInput ? messageInput.value : '',
+                            _subject: "New Lead from JV-Portfolio!" // Subject line of the email you receive
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        // Show success UI
+                        successMsg.classList.remove('hidden');
+                        form.reset();
+                        if(submitBtn) {
+                            submitBtn.innerHTML = originalBtnText;
+                            submitBtn.disabled = false;
+                            submitBtn.classList.remove('opacity-80');
+                        }
+                        
+                        // Hide message after 5 seconds
+                        setTimeout(() => {
+                            successMsg.classList.add('hidden');
+                        }, 5000);
+                    })
+                    .catch(error => {
+                        console.log(error);
+                        if(submitBtn) {
+                            submitBtn.innerHTML = 'Error. Please try again.';
+                            setTimeout(() => {
+                                submitBtn.innerHTML = originalBtnText;
+                                submitBtn.disabled = false;
+                                submitBtn.classList.remove('opacity-80');
+                            }, 3000);
+                        }
+                    });
+                });
+            }
         });
     </script>
 </body>
